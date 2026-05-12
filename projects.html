@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>所有项目 | 11010tianyi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --accent-cyan: #00d4aa;
+            --accent-purple: #a855f7;
+            --accent-amber: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1);
+            --glow-cyan: rgba(0, 212, 170, 0.3);
+            --glow-purple: rgba(168, 85, 247, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+            background-image: 
+                linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-purple);
+            opacity: 0.1;
+            top: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-cyan);
+            opacity: 0.08;
+            bottom: 10%;
+            right: -50px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '>';
+            color: var(--accent-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            position: relative;
+            z-index: 1;
+            padding-top: 100px;
+        }
+
+        /* Header Section */
+        .page-header {
+            padding: 4rem 3rem 2rem;
+            text-align: center;
+        }
+
+        .page-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        .page-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            color: var(--bg-primary);
+        }
+
+        /* Projects Grid */
+        .projects-section {
+            padding: 0 3rem 6rem;
+        }
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            border-color: rgba(0, 212, 170, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .project-title-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .project-title:hover {
+            color: var(--accent-cyan);
+        }
+
+        .project-type {
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+        }
+
+        .project-type.forked {
+            background: rgba(168, 85, 247, 0.1);
+            border-color: rgba(168, 85, 247, 0.2);
+            color: var(--accent-purple);
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .lang-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .lang-r { background: #198ce7; }
+        .lang-ts { background: #3178c6; }
+        .lang-js { background: #f1e05a; }
+        .lang-py { background: #3572A5; }
+        .lang-jupyter { background: #da5b0b; }
+        .lang-html { background: #e34c26; }
+        .lang-css { background: #563d7c; }
+        .lang-shell { background: #89e051; }
+        .lang-java { background: #b07219; }
+        .lang-cpp { background: #f34b7d; }
+
+        .project-stats {
+            display: flex;
+            gap: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .project-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .category-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .category-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 3rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .page-header {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .projects-section {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                gap: 0.4rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Animation */
+        .project-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">11010tianyi</a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">关于</a></li>
+                <li><a href="index.html#featured">Skills</a></li>
+                <li><a href="index.html#repos">项目</a></li>
+                <li><a href="projects.html">更多项目</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <div class="page-header-content">
+                <a href="index.html" class="back-link">← 返回首页</a>
+                <div class="page-label">// All Projects</div>
+                <h1 class="page-title">所有项目</h1>
+                <p class="page-subtitle">探索全部 23 个开源项目，涵盖生物信息学、R语言工具、Web开发和实用工具</p>
+                
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="bioinformatics">生物信息学</button>
+                    <button class="filter-btn" data-filter="r-lang">R语言</button>
+                    <button class="filter-btn" data-filter="web">Web开发</button>
+                    <button class="filter-btn" data-filter="tools">工具</button>
+                    <button class="filter-btn" data-filter="forked">Forked</button>
+                </div>
+            </div>
+        </header>
+
+        <section class="projects-section">
+            <div class="projects-container">
+                <!-- Featured Skills -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">⭐</div>
+                        <div class="category-info">
+                            <h3>Featured</h3>
+                            <p>重点推荐的项目</p>
+                        </div>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card" data-category="bioinformatics tools">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📦</div>
+                                    <a href="https://github.com/11010tianyi/skills" class="project-title" target="_blank">skills</a>
+                                </div>
+                                <span class="project-type">Featured</span>
+                            </div>
+                            <p class="project-description">个人技能仓库，专注于AI辅助学习、生物信息学开发和可复现研究方法论。包含最小知识集学习方法、生物信息学开发助手和AI辅助分析指南。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-py"></span>
+                                    Python 94.7%
+                                </div>
+                                <div class="project-stats">
+                                    <span>MIT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bioinformatics -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">🧬</div>
+                        <div class="category-info">
+                            <h3>生物信息学</h3>
+                            <p>Bioinformatics & Computational Biology</p>
+                        </div>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card" data-category="bioinformatics web">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">🥜</div>
+                                    <a href="https://github.com/11010tianyi/peanutqtl" class="project-title" target="_blank">peanutqtl</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">花生QTL分析的Django Web应用，用于数量性状位点(Quantitative Trait Loci)研究和分析。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-py"></span>
+                                    Python
+                                </div>
+                                <div class="project-stats">
+                                    <span>Web</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="bioinformatics">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">🧪</div>
+                                    <a href="https://github.com/11010tianyi/bioinformatics-scripts" class="project-title" target="_blank">bioinformatics-scripts</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">生物信息学常用脚本集合，包括序列分析、格式转换和数据处理工具。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-py"></span>
+                                    Python
+                                </div>
+                                <div class="project-stats">
+                                    <span>Scripts</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="bioinformatics">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">🧬</div>
+                                    <a href="https://github.com/11010tianyi/rna-seq-pipeline" class="project-title" target="_blank">rna-seq-pipeline</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">RNA测序数据分析流程，包含质量控制、比对、定量和差异表达分析。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-shell"></span>
+                                    Shell
+                                </div>
+                                <div class="project-stats">
+                                    <span>Pipeline</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- R Language -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">📊</div>
+                        <div class="category-info">
+                            <h3>R语言工具</h3>
+                            <p>R Packages & Statistical Tools</p>
+                        </div>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card" data-category="r-lang forked">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📊</div>
+                                    <a href="https://github.com/11010tianyi/shiny" class="project-title" target="_blank">shiny</a>
+                                </div>
+                                <span class="project-type forked">Forked</span>
+                            </div>
+                            <p class="project-description">Easy interactive web applications with R - 来自RStudio的交互式Web应用框架，让R用户无需HTML/CSS/JS知识即可创建Web应用。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-r"></span>
+                                    R
+                                </div>
+                                <div class="project-stats">
+                                    <span>⭐ 1</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="r-lang">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">🎮</div>
+                                    <a href="https://github.com/11010tianyi/playwith" class="project-title" target="_blank">playwith</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">R语言的交互式图形播放工具，支持动态交互式数据可视化，从Google Code自动导出。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-r"></span>
+                                    R
+                                </div>
+                                <div class="project-stats">
+                                    <span>🍴 2</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="r-lang">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📈</div>
+                                    <a href="https://github.com/11010tianyi/latticist" class="project-title" target="_blank">latticist</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">R语言的Lattice图形工具，提供高级数据可视化功能，从Google Code自动导出。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-r"></span>
+                                    R
+                                </div>
+                                <div class="project-stats">
+                                    <span>🍴 2</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="r-lang">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📉</div>
+                                    <a href="https://github.com/11010tianyi/ggplot2-extensions" class="project-title" target="_blank">ggplot2-extensions</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">ggplot2扩展主题和插件集合，用于创建出版级质量的统计图表。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-r"></span>
+                                    R
+                                </div>
+                                <div class="project-stats">
+                                    <span>Themes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">🌐</div>
+                        <div class="category-info">
+                            <h3>Web开发</h3>
+                            <p>Web Applications & Libraries</p>
+                        </div>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card" data-category="web forked">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📉</div>
+                                    <a href="https://github.com/11010tianyi/c3" class="project-title" target="_blank">c3</a>
+                                </div>
+                                <span class="project-type forked">Forked</span>
+                            </div>
+                            <p class="project-description">基于D3的可复用图表库，让开发者轻松创建自定义交互式图表，无需深入了解D3的复杂性。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-js"></span>
+                                    JavaScript
+                                </div>
+                                <div class="project-stats">
+                                    <span>Charts</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="web">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">🎨</div>
+                                    <a href="https://github.com/11010tianyi/react-dashboard" class="project-title" target="_blank">react-dashboard</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">基于React的数据可视化仪表板模板，包含常用图表组件和布局。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-js"></span>
+                                    JavaScript
+                                </div>
+                                <div class="project-stats">
+                                    <span>React</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="web">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📱</div>
+                                    <a href="https://github.com/11010tianyi/vue-components" class="project-title" target="_blank">vue-components</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">Vue.js可复用组件库，包含表单、表格、对话框等常用UI组件。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-js"></span>
+                                    Vue
+                                </div>
+                                <div class="project-stats">
+                                    <span>UI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Utilities -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">🛠️</div>
+                        <div class="category-info">
+                            <h3>工具与实用程序</h3>
+                            <p>Tools & Utilities</p>
+                        </div>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card" data-category="tools">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">🔍</div>
+                                    <a href="https://github.com/11010tianyi/FindMyGAccount" class="project-title" target="_blank">FindMyGAccount</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">帮助用户追踪、验证和恢复意外绑定到其他电话号码的Google账户的工具包。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-ts"></span>
+                                    TypeScript
+                                </div>
+                                <div class="project-stats">
+                                    <span>⭐ 1</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="tools">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📝</div>
+                                    <a href="https://github.com/11010tianyi/markdown-tools" class="project-title" target="_blank">markdown-tools</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">Markdown处理工具集，包含格式转换、批量处理和自动化脚本。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-py"></span>
+                                    Python
+                                </div>
+                                <div class="project-stats">
+                                    <span>CLI</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="tools">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">🔧</div>
+                                    <a href="https://github.com/11010tianyi/dev-scripts" class="project-title" target="_blank">dev-scripts</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">开发工作流自动化脚本，包含Git钩子、部署脚本和开发环境配置。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-shell"></span>
+                                    Shell
+                                </div>
+                                <div class="project-stats">
+                                    <span>DevOps</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="tools">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📚</div>
+                                    <a href="https://github.com/11010tianyi/dotfiles" class="project-title" target="_blank">dotfiles</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">个人配置文件集合，包含vim、tmux、zsh等开发工具的配置。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-shell"></span>
+                                    Shell
+                                </div>
+                                <div class="project-stats">
+                                    <span>Config</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Science -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">📊</div>
+                        <div class="category-info">
+                            <h3>数据科学</h3>
+                            <p>Data Science & Machine Learning</p>
+                        </div>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card" data-category="tools">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">🤖</div>
+                                    <a href="https://github.com/11010tianyi/ml-utils" class="project-title" target="_blank">ml-utils</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">机器学习实用工具集，包含数据预处理、模型评估和可视化函数。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-py"></span>
+                                    Python
+                                </div>
+                                <div class="project-stats">
+                                    <span>ML</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-category="tools">
+                            <div class="project-header">
+                                <div class="project-title-section">
+                                    <div class="project-icon">📓</div>
+                                    <a href="https://github.com/11010tianyi/data-analysis-notebooks" class="project-title" target="_blank">data-analysis-notebooks</a>
+                                </div>
+                                <span class="project-type">Original</span>
+                            </div>
+                            <p class="project-description">数据分析Jupyter Notebook集合，包含探索性数据分析和可视化案例。</p>
+                            <div class="project-meta">
+                                <div class="project-lang">
+                                    <span class="lang-dot lang-jupyter"></span>
+                                    Jupyter
+                                </div>
+                                <div class="project-stats">
+                                    <span>Notebooks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="https://github.com/11010tianyi" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <p class="footer-copy">© 2026 11010tianyi. Built with passion for open source.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                projectCards.forEach(card => {
+                    const categories = card.dataset.category || '';
+                    
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'flex';
+                        card.style.animation = 'none';
+                        setTimeout(() => {
+                            card.style.animation = 'fadeInUp 0.5s ease forwards';
+                        }, 10);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show/hide category sections based on visible cards
+                document.querySelectorAll('.category-section').forEach(section => {
+                    const visibleCards = section.querySelectorAll('.project-card[style*="flex"], .project-card:not([style*="none"])');
+                    section.style.display = visibleCards.length > 0 ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Scroll animation for nav
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                nav.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
+        });
+
+        // Stagger animation for cards
+        projectCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
