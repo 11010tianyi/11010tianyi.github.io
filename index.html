@@ -3,800 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>11010tianyi | Developer & Bioinformatician</title>
+    <title>11010tianyi</title>
+    <meta name="description" content="11010tianyi 的公开作品：宇宙尺度之旅、小花生与猫咪主题页面、小游戏、清单工具，以及仍在的早期仓库。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a24;
-            --accent-cyan: #00d4aa;
-            --accent-purple: #a855f7;
-            --accent-amber: #f59e0b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border: rgba(148, 163, 184, 0.1);
-            --glow-cyan: rgba(0, 212, 170, 0.3);
-            --glow-purple: rgba(168, 85, 247, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Background Grid Animation */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-            background-image: 
-                linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(60px, 60px); }
-        }
-
-        /* Floating Orbs */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--accent-purple);
-            opacity: 0.15;
-            top: -100px;
-            right: -100px;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--accent-cyan);
-            opacity: 0.1;
-            bottom: 10%;
-            left: -50px;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.1); }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo::before {
-            content: '>';
-            color: var(--accent-purple);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-cyan);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Main Content */
-        main {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 3rem 4rem;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(0, 212, 170, 0.1);
-            border: 1px solid rgba(0, 212, 170, 0.3);
-            border-radius: 100px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent-cyan);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-cyan);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero h1 span {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-            -webkit-text-fill-color: var(--text-secondary);
-            margin-top: 0.5rem;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin-bottom: 2rem;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.875rem 1.75rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--accent-cyan);
-            color: var(--bg-primary);
-        }
-
-        .btn-primary:hover {
-            background: #00b894;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px var(--glow-cyan);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-        }
-
-        /* Terminal Window */
-        .terminal {
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .terminal-header {
-            background: var(--bg-secondary);
-            padding: 1rem 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .terminal-dot.red { background: #ef4444; }
-        .terminal-dot.yellow { background: #f59e0b; }
-        .terminal-dot.green { background: #10b981; }
-
-        .terminal-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-left: 0.5rem;
-        }
-
-        .terminal-body {
-            padding: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-
-        .terminal-line {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .terminal-prompt {
-            color: var(--accent-purple);
-            white-space: nowrap;
-        }
-
-        .terminal-command {
-            color: var(--text-primary);
-        }
-
-        .terminal-output {
-            color: var(--text-secondary);
-            margin-left: 0;
-            margin-bottom: 1rem;
-        }
-
-        .terminal-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 1.2em;
-            background: var(--accent-cyan);
-            animation: blink 1s infinite;
-            vertical-align: text-bottom;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        .skill-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(0, 212, 170, 0.1);
-            border: 1px solid rgba(0, 212, 170, 0.3);
-            border-radius: 4px;
-            color: var(--accent-cyan);
-            font-size: 0.8rem;
-            margin: 0.25rem;
-        }
-
-        /* Featured Section */
-        .featured {
-            padding: 6rem 3rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 170, 0.02) 50%, transparent 100%);
-        }
-
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Skills Repository Card */
-        .featured-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
-            transition: all 0.4s;
-        }
-
-        .featured-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-        }
-
-        .featured-card:hover {
-            border-color: rgba(0, 212, 170, 0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 30px 60px -15px rgba(0, 212, 170, 0.1);
-        }
-
-        .featured-content {
-            padding: 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .featured-info h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .featured-info h3::before {
-            content: '📦';
-        }
-
-        .featured-meta {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-        }
-
-        .featured-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--text-muted);
-        }
-
-        .featured-meta span::before {
-            content: '●';
-            color: var(--accent-cyan);
-        }
-
-        .featured-description {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .skill-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .skill-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(10, 10, 15, 0.5);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-        .skill-item:hover {
-            border-color: rgba(168, 85, 247, 0.3);
-            background: rgba(168, 85, 247, 0.05);
-        }
-
-        .skill-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .skill-details h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .skill-details p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .featured-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        /* Other Repos Section */
-        .repos {
-            padding: 6rem 3rem;
-        }
-
-        .repos-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .repo-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .repo-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .repo-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .repo-card:hover {
-            border-color: rgba(0, 212, 170, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .repo-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .repo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-
-        .repo-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .repo-name:hover {
-            color: var(--accent-cyan);
-        }
-
-        .repo-description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .repo-meta {
-            display: flex;
-            gap: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .repo-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .repo-lang {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .lang-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .lang-r { background: #198ce7; }
-        .lang-ts { background: #3178c6; }
-        .lang-js { background: #f1e05a; }
-        .lang-py { background: #3572A5; }
-
-        .view-all {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 3rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-cyan);
-        }
-
-        .footer-copy {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content {
-                order: 1;
-            }
-
-            .terminal {
-                order: 2;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .featured-content {
-                grid-template-columns: 1fr;
-            }
-
-            .repos-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .featured,
-            .repos {
-                padding: 4rem 1.5rem;
-            }
-
-            .repos-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-actions {
-                flex-direction: column;
-            }
-
-            .featured-content {
-                padding: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="bg-grid"></div>
@@ -805,308 +17,244 @@
 
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">11010tianyi</a>
+            <a href="index.html" class="logo">11010tianyi</a>
             <ul class="nav-links">
                 <li><a href="#about">关于</a></li>
-                <li><a href="#featured">Skills</a></li>
-                <li><a href="#repos">项目</a></li>
-                <li><a href="projects.html">更多项目</a></li>
+                <li><a href="#featured">精选</a></li>
+                <li><a href="#work">作品</a></li>
+                <li><a href="projects.html">项目页</a></li>
             </ul>
         </div>
     </nav>
 
     <main>
         <section class="hero" id="about">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <div class="hero-badge">Open to collaborate</div>
-                    <h1>
-                        11010tianyi
-                        <span>Developer & Bioinformatician</span>
-                    </h1>
-                    <p class="hero-description">
-                        专注于生物信息学开发、AI辅助研究方法论和可复现科学计算。构建小而精的工具，解决实际问题。
+            <div class="wrap hero-grid">
+                <div>
+                    <p class="kicker">Public projects</p>
+                    <h1>11010tianyi<span>互动网页、小游戏、清单与早期仓库</span></h1>
+                    <p class="lede">
+                        这里只列现在仍能打开的公开仓库。近期作品放在前面：宇宙尺度之旅、小花生和猫咪主题页面、几款小游戏，以及清单和命令行工具。更早的 R 包和 fork 留在页尾，不再占主要位置。
                     </p>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number">23</span>
-                            <span class="stat-label">Repositories</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Featured Skills</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">MIT</span>
-                            <span class="stat-label">License</span>
-                        </div>
-                    </div>
-                    <div class="hero-buttons">
-                        <a href="https://github.com/11010tianyi/skills" class="btn btn-primary" target="_blank">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            查看 Skills
-                        </a>
-                        <a href="projects.html" class="btn btn-secondary">浏览所有项目</a>
+                    <div class="actions">
+                        <a class="btn btn-primary" href="https://11010tianyi.github.io/cosmic-journey/">打开宇宙尺度之旅</a>
+                        <a class="btn btn-secondary" href="projects.html">查看项目页</a>
                     </div>
                 </div>
-
-                <div class="terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dot red"></div>
-                        <div class="terminal-dot yellow"></div>
-                        <div class="terminal-dot green"></div>
-                        <span class="terminal-title">skills — zsh</span>
+                <aside class="panel" aria-label="当前可访问的作品">
+                    <div class="panel-bar">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span>public/</span>
                     </div>
-                    <div class="terminal-body">
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-command">npx skills add 11010tianyi/skills</span>
-                        </div>
-                        <div class="terminal-output">
-                            ✓ 3 skills found<br>
-                            <br>
-                            <span class="skill-tag">minimal-knowledge-set-learning</span><br>
-                            <span class="skill-tag">bioinformatics-dev-assistant</span><br>
-                            <span class="skill-tag">bioinformatics-agent-guidelines</span>
-                        </div>
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-command">whoami</span>
-                        </div>
-                        <div class="terminal-output">
-                            Developer | Bioinformatician | Open Source Contributor
-                        </div>
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-command">ls interests/</span>
-                        </div>
-                        <div class="terminal-output">
-                            AI-assisted-research  reproducible-science  bioinformatics-pipelines
-                        </div>
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-cursor"></span>
-                        </div>
+                    <div class="panel-body">
+                        <div><strong>sites/</strong></div>
+                        cosmic-journey<br>
+                        xiaohuasheng-growth-guardian<br>
+                        cat-birthday-album<br>
+                        xiaohuasheng-countdown<br><br>
+                        <div><strong>games/</strong></div>
+                        nba-basketball-kill<br>
+                        cat-board-games<br>
+                        cat-clash-claws<br>
+                        black-cat-journey
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
 
-        <section class="featured" id="featured">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-label">// Featured</div>
-                    <h2 class="section-title">Skills Repository</h2>
-                    <p class="section-subtitle">个人技能仓库，专注于AI辅助学习、生物信息学开发和可复现研究方法论</p>
-                </div>
-
-                <div class="featured-card">
-                    <div class="featured-content">
-                        <div class="featured-info">
-                            <h3>11010tianyi/skills</h3>
-                            <div class="featured-meta">
-                                <span>Public</span>
-                                <span>Python 94.7%</span>
-                                <span>MIT License</span>
-                            </div>
-                            <p class="featured-description">
-                                一个用于AI辅助学习、研究和生物信息学工作的个人技能仓库。技能保持小型、可组合且易于适应。采用小而精的技能架构，每个技能都包含简洁的程序化文档和可独立运行的脚本。
-                            </p>
-                            <div class="featured-actions">
-                                <a href="https://github.com/11010tianyi/skills" class="btn btn-primary" target="_blank">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                    访问仓库
-                                </a>
-                                <a href="https://github.com/11010tianyi/skills/blob/main/README.zh.md" class="btn btn-secondary" target="_blank">中文文档</a>
-                            </div>
-                        </div>
-
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-icon">🎯</div>
-                                <div class="skill-details">
-                                    <h4>minimal-knowledge-set-learning</h4>
-                                    <p>通过最小知识集快速进入新领域的通用学习方法</p>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-icon">🧬</div>
-                                <div class="skill-details">
-                                    <h4>bioinformatics-dev-assistant</h4>
-                                    <p>生物信息学开发者常用任务的轻量级脚本</p>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-icon">📋</div>
-                                <div class="skill-details">
-                                    <h4>bioinformatics-agent-guidelines</h4>
-                                    <p>可复现AI辅助生物信息学分析的规范指南</p>
-                                </div>
-                            </div>
+        <section class="section" id="featured">
+            <div class="wrap">
+                <article class="feature">
+                    <div>
+                        <p class="kicker">精选 · cosmic-journey · HTML</p>
+                        <h2><a href="https://11010tianyi.github.io/cosmic-journey/">宇宙尺度之旅</a></h2>
+                        <p>宇宙尺度之旅 — 从银河系到你（GitHub Pages）。单页互动：从银河系缩放到「你在这里」，含氛围乐、定位与地球贴图等。</p>
+                        <div class="actions">
+                            <a class="btn btn-primary" href="https://11010tianyi.github.io/cosmic-journey/">打开页面</a>
+                            <a class="btn btn-secondary" href="https://github.com/11010tianyi/cosmic-journey">GitHub 仓库</a>
                         </div>
                     </div>
-                </div>
+                    <div class="orbit" aria-hidden="true">
+                        <div class="ring"><span><i></i></span></div>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <section class="repos" id="repos">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-label">// Other Projects</div>
-                    <h2 class="section-title">其他项目</h2>
-                    <p class="section-subtitle">探索更多开源项目，涵盖R语言工具、Web开发和实用工具</p>
-                </div>
+        <section class="section" id="work">
+            <div class="wrap">
+                <h2>其余公开作品</h2>
+                <p class="section-intro">按互动站点与游戏、工具与清单、早期仓库分组。卡片标题指向当前可用的页面或演示；没有可打开页面时指向仓库。</p>
 
-                <div class="repos-grid">
-                    <div class="repo-card">
-                        <div class="repo-header">
-                            <div class="repo-icon">📊</div>
-                            <a href="https://github.com/11010tianyi/shiny" class="repo-name" target="_blank">shiny</a>
-                        </div>
-                        <p class="repo-description">Easy interactive web applications with R - 来自RStudio的交互式Web应用框架</p>
-                        <div class="repo-meta">
-                            <span class="repo-lang"><span class="lang-dot lang-r"></span>R</span>
-                            <span>⭐ 1</span>
-                            <span>Forked</span>
-                        </div>
+                <div class="group" id="interactive">
+                    <div class="group-head">
+                        <h3>互动站点与游戏</h3>
+                        <p>页面可打开；黑猫旅程目前只有仓库</p>
                     </div>
-
-                    <div class="repo-card">
-                        <div class="repo-header">
-                            <div class="repo-icon">🔍</div>
-                            <a href="https://github.com/11010tianyi/FindMyGAccount" class="repo-name" target="_blank">FindMyGAccount</a>
-                        </div>
-                        <p class="repo-description">帮助用户追踪、验证和恢复意外绑定到其他电话号码的Google账户的工具包</p>
-                        <div class="repo-meta">
-                            <span class="repo-lang"><span class="lang-dot lang-ts"></span>TypeScript</span>
-                            <span>⭐ 1</span>
-                        </div>
-                    </div>
-
-                    <div class="repo-card">
-                        <div class="repo-header">
-                            <div class="repo-icon">🎮</div>
-                            <a href="https://github.com/11010tianyi/playwith" class="repo-name" target="_blank">playwith</a>
-                        </div>
-                        <p class="repo-description">R语言的交互式图形播放工具，从Google Code自动导出</p>
-                        <div class="repo-meta">
-                            <span class="repo-lang"><span class="lang-dot lang-r"></span>R</span>
-                            <span>🍴 2</span>
-                        </div>
-                    </div>
-
-                    <div class="repo-card">
-                        <div class="repo-header">
-                            <div class="repo-icon">📈</div>
-                            <a href="https://github.com/11010tianyi/latticist" class="repo-name" target="_blank">latticist</a>
-                        </div>
-                        <p class="repo-description">R语言的Lattice图形工具，从Google Code自动导出</p>
-                        <div class="repo-meta">
-                            <span class="repo-lang"><span class="lang-dot lang-r"></span>R</span>
-                            <span>🍴 2</span>
-                        </div>
-                    </div>
-
-                    <div class="repo-card">
-                        <div class="repo-header">
-                            <div class="repo-icon">📉</div>
-                            <a href="https://github.com/11010tianyi/c3" class="repo-name" target="_blank">c3</a>
-                        </div>
-                        <p class="repo-description">基于D3的可复用图表库，轻松创建自定义图表</p>
-                        <div class="repo-meta">
-                            <span class="repo-lang"><span class="lang-dot lang-js"></span>JavaScript</span>
-                            <span>Forked</span>
-                        </div>
-                    </div>
-
-                    <div class="repo-card">
-                        <div class="repo-header">
-                            <div class="repo-icon">🥜</div>
-                            <a href="https://github.com/11010tianyi/peanutqtl" class="repo-name" target="_blank">peanutqtl</a>
-                        </div>
-                        <p class="repo-description">花生QTL分析的Django Web应用，用于数量性状位点研究</p>
-                        <div class="repo-meta">
-                            <span class="repo-lang"><span class="lang-dot lang-py"></span>Python</span>
-                            <span>Web</span>
-                        </div>
+                    <div class="grid">
+                        <article class="card">
+                            <div class="card-top"><span class="slug">xiaohuasheng-growth-guardian</span><span class="tag">JavaScript</span></div>
+                            <h3><a href="https://11010tianyi.github.io/xiaohuasheng-growth-guardian/">小花生成长护航计划</a></h3>
+                            <p>小花生成长护航计划 - A beautiful childhood milestone tracker website</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/xiaohuasheng-growth-guardian/">打开页面</a><a href="https://github.com/11010tianyi/xiaohuasheng-growth-guardian">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">cat-birthday-album</span><span class="tag">HTML</span></div>
+                            <h3><a href="https://11010tianyi.github.io/cat-birthday-album/">黑茶和茉莉的生日纪念册</a></h3>
+                            <p>A cute birthday album website for my cat.</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/cat-birthday-album/">打开页面</a><a href="https://github.com/11010tianyi/cat-birthday-album">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">xiaohuasheng-countdown</span><span class="tag">HTML</span></div>
+                            <h3><a href="https://11010tianyi.github.io/xiaohuasheng-countdown/">小花生倒计时</a></h3>
+                            <p>🥜 小花生倒计时 - 为田茱萸制作的倒计时网页</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/xiaohuasheng-countdown/">打开页面</a><a href="https://github.com/11010tianyi/xiaohuasheng-countdown">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">nba-basketball-kill</span><span class="tag">JavaScript</span></div>
+                            <h3><a href="https://11010tianyi.github.io/nba-basketball-kill/">NBA 篮球杀</a></h3>
+                            <p>NBA 篮球杀：篮球主题身份卡牌游戏原型</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/nba-basketball-kill/">打开页面</a><a href="https://github.com/11010tianyi/nba-basketball-kill">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">cat-board-games</span><span class="tag">TypeScript</span></div>
+                            <h3><a href="https://11010tianyi.github.io/cat-board-games/">cat-board-games</a></h3>
+                            <p>SVG board game collection themed around two Chinese domestic cats</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/cat-board-games/">打开页面</a><a href="https://github.com/11010tianyi/cat-board-games">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">cat-clash-claws</span><span class="tag">JavaScript</span></div>
+                            <h3><a href="https://11010tianyi.github.io/cat-clash-claws/">猫猫对战</a></h3>
+                            <p>猫猫对战（Cat Clash Claws）：基于 Web 的 2D 猫咪对战小游戏。</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/cat-clash-claws/">打开页面</a><a href="https://github.com/11010tianyi/cat-clash-claws">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">black-cat-journey</span><span class="tag">GDScript</span></div>
+                            <h3><a href="https://github.com/11010tianyi/black-cat-journey">黑猫旅程</a></h3>
+                            <p>一款唯美、低文字压力、重氛围的 3D 第三人称探索游戏。</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/black-cat-journey">仓库</a></p>
+                        </article>
                     </div>
                 </div>
 
-                <div class="view-all">
-                    <a href="projects.html" class="btn btn-secondary">查看全部 23 个项目 →</a>
+                <div class="group" id="tools">
+                    <div class="group-head">
+                        <h3>工具与清单</h3>
+                        <p>有页面或演示的优先链到那里</p>
+                    </div>
+                    <div class="grid">
+                        <article class="card">
+                            <div class="card-top"><span class="slug">awesome-ai-video-editing</span><span class="tag">清单</span></div>
+                            <h3><a href="https://github.com/11010tianyi/awesome-ai-video-editing">awesome-ai-video-editing</a></h3>
+                            <p>AI视频剪辑 + 程序化视频生成 工具集与学习资源</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/awesome-ai-video-editing">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">awesome-ai-coding-projects</span><span class="tag">HTML</span></div>
+                            <h3><a href="https://11010tianyi.github.io/awesome-ai-coding-projects/">awesome-ai-coding-projects</a></h3>
+                            <p>Curated and automatically tracked list of excellent AI coding and vibe coding projects</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/awesome-ai-coding-projects/">打开页面</a><a href="https://github.com/11010tianyi/awesome-ai-coding-projects">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">awesome-bioinformatics_youbetterknow</span><span class="tag">TypeScript</span></div>
+                            <h3><a href="https://11010tianyi.github.io/awesome-bioinformatics_youbetterknow/">awesome-bioinformatics_youbetterknow</a></h3>
+                            <p>Daily updated awesome bioinformatics atlas with GitHub Pages dashboard and auto-discovery</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/awesome-bioinformatics_youbetterknow/">打开页面</a><a href="https://github.com/11010tianyi/awesome-bioinformatics_youbetterknow">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">awesome-Traditional_Chinese_medicine</span><span class="tag">JavaScript</span></div>
+                            <h3><a href="https://11010tianyi.github.io/awesome-Traditional_Chinese_medicine/">Awesome Traditional Chinese Medicine</a></h3>
+                            <p>TCM knowledge search, prescription analysis, network pharmacology and visualization MVP.</p>
+                            <p class="card-links"><a href="https://11010tianyi.github.io/awesome-Traditional_Chinese_medicine/">打开页面</a><a href="https://github.com/11010tianyi/awesome-Traditional_Chinese_medicine">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">data-visualization</span><span class="tag">HTML</span></div>
+                            <h3><a href="https://data-visualization-sage.vercel.app">data-visualization</a></h3>
+                            <p>26种专业图表数据可视化工具，支持TSV/CSV/Excel上传，一键生成PNG/PDF</p>
+                            <p class="card-links"><a href="https://data-visualization-sage.vercel.app">打开演示</a><a href="https://github.com/11010tianyi/data-visualization">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">FindMyGAccount</span><span class="tag">TypeScript</span></div>
+                            <h3><a href="https://github.com/11010tianyi/FindMyGAccount">FindMyGAccount</a></h3>
+                            <p>FindMyGAccount — A toolkit designed to help users trace, verify, and recover Google accounts that were unexpectedly bound to another phone number.</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/FindMyGAccount">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">skills</span><span class="tag">Python · MIT</span></div>
+                            <h3><a href="https://github.com/11010tianyi/skills">skills</a></h3>
+                            <p>Personal AI skills for learning, research, and bioinformatics. 含 minimal-knowledge-set-learning、bioinformatics-dev-assistant、bioinformatics-agent-guidelines。</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/skills">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">aitldr-cli</span><span class="tag">Python</span></div>
+                            <h3><a href="https://github.com/11010tianyi/aitldr-cli">aitldr-cli</a></h3>
+                            <p>A CLI tool that first shows official TLDR pages, then falls back to AI-generated pages for missing commands.</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/aitldr-cli">仓库</a></p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="group archive" id="archive">
+                    <div class="group-head">
+                        <h3>早期仓库</h3>
+                        <p>仍在账号下，不作为当前主推</p>
+                    </div>
+                    <div class="grid">
+                        <article class="card">
+                            <div class="card-top"><span class="slug">peanutqtl</span><span class="tag">空仓库</span></div>
+                            <h3><a href="https://github.com/11010tianyi/peanutqtl">peanutqtl</a></h3>
+                            <p>peanutqtl web django。该仓库目前没有文件。</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/peanutqtl">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">shiny</span><span class="tag fork">Fork · R</span></div>
+                            <h3><a href="https://github.com/11010tianyi/shiny">shiny</a></h3>
+                            <p>Easy interactive web applications with R</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/shiny">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">playwith</span><span class="tag">R</span></div>
+                            <h3><a href="https://github.com/11010tianyi/playwith">playwith</a></h3>
+                            <p>A GTK+ graphical user interface for editing and interacting with R plots. Automatically exported from code.google.com/p/playwith.</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/playwith">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">latticist</span><span class="tag">R</span></div>
+                            <h3><a href="https://github.com/11010tianyi/latticist">latticist</a></h3>
+                            <p>Latticist provides a graphical user interface for exploratory visualisation. Automatically exported from code.google.com/p/latticist.</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/latticist">仓库</a></p>
+                        </article>
+                        <article class="card">
+                            <div class="card-top"><span class="slug">c3</span><span class="tag fork">Fork · JavaScript</span></div>
+                            <h3><a href="https://github.com/11010tianyi/c3">c3</a></h3>
+                            <p>A D3-based reusable chart library</p>
+                            <p class="card-links"><a href="https://github.com/11010tianyi/c3">仓库</a></p>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="https://github.com/11010tianyi" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-                <a href="mailto:contact@example.com">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Email
-                </a>
-            </div>
-            <p class="footer-copy">© 2026 11010tianyi. Built with passion for open source.</p>
+        <div class="wrap footer-row">
+            <p>© 2026 11010tianyi</p>
+            <a href="https://github.com/11010tianyi">GitHub</a>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+            anchor.addEventListener('click', function (event) {
+                var id = anchor.getAttribute('href');
+                if (!id || id === '#') return;
+                var target = document.querySelector(id);
+                if (!target) return;
+                event.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
-        });
-
-        // Add scroll effect to navigation
-        const nav = document.querySelector('nav');
-        let lastScroll = 0;
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                nav.style.background = 'rgba(10, 10, 15, 0.95)';
-            } else {
-                nav.style.background = 'rgba(10, 10, 15, 0.8)';
-            }
-            
-            lastScroll = currentScroll;
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.querySelectorAll('.repo-card, .skill-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
