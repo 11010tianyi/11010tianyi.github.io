@@ -23,7 +23,7 @@ html {
 }
 
 body {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Space Grotesk", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
@@ -99,7 +99,7 @@ nav {
 }
 
 .logo {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--accent-cyan);
@@ -123,6 +123,7 @@ nav {
     text-decoration: none;
     font-size: 0.92rem;
     font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover,
@@ -147,7 +148,7 @@ main {
 }
 
 .kicker {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.78rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -194,6 +195,7 @@ h1 span {
     text-decoration: none;
     font-weight: 600;
     border: 1px solid transparent;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .btn-primary {
@@ -230,7 +232,7 @@ h1 span {
     padding: 0.85rem 1rem;
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border);
-    font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.75rem;
     color: var(--text-muted);
 }
@@ -247,7 +249,7 @@ h1 span {
 
 .panel-body {
     padding: 1.1rem 1.15rem 1.25rem;
-    font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.82rem;
     line-height: 1.7;
     color: var(--text-secondary);
@@ -328,6 +330,7 @@ h1 span {
     border: 1px dashed rgba(168, 85, 247, 0.55);
     display: grid;
     place-items: center;
+    animation: orbit-spin 26s linear infinite;
 }
 
 .ring i {
@@ -336,6 +339,34 @@ h1 span {
     border-radius: 50%;
     background: var(--accent-cyan);
     box-shadow: 0 0 18px var(--glow-cyan);
+    animation: orbit-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes orbit-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.75; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .ring span,
+    .ring i {
+        animation: none;
+    }
+
+    .card,
+    .btn,
+    .nav-links a {
+        transition: none;
+    }
 }
 
 #about,
@@ -398,13 +429,13 @@ h1 span {
 }
 
 .slug {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.75rem;
     color: var(--accent-cyan);
 }
 
 .tag {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.68rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -539,5 +570,17 @@ footer a:hover {
 
     .orbit {
         min-height: 140px;
+    }
+
+    .orb-1 {
+        width: 240px;
+        height: 240px;
+        opacity: 0.12;
+    }
+
+    .orb-2 {
+        width: 180px;
+        height: 180px;
+        opacity: 0.08;
     }
 }
